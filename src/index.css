@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+
+  /* Teks */
+  --color-ink: #0f1d33; /* heading navy */
+  --color-body: #465166; /* paragraf */
+
+  /* Permukaan */
+  --color-surface: #f8f9ff; /* latar kartu / section */
+  --color-sky-soft: #dce8fd; /* kartu paket populer */
+  --color-sky-chip: #e3eafb; /* chip & tombol sekunder */
+
+  /* Aksen hangat (ikon, tag, link) */
+  --color-peach: #fadfc6;
+  --color-peach-ink: #7a3508;
+  --color-accent: #b8520a;
+  --color-sand: #e2d6cb; /* angka 01–04 */
+
+  /* Aksen biru (eyebrow, ceklis, link kecil) */
+  --color-brand: #00629b;
+
+  /* CTA utama */
+  --color-cta: #f97316;
+  --color-cta-hover: #ea640a;
+
+  /* Bayangan "kartu bertumpuk" pada section Layanan */
+  --shadow-stack: -8px 10px 0 0 #efeff3;
+  --shadow-stack-hover: -10px 14px 0 0 #e9e9ef;
+
+  /* Badge melayang */
+  --animate-float: float 4s ease-in-out infinite;
+  /* Marquee logo teknologi (mobile/tablet) */
+  --animate-marquee: marquee 32s linear infinite;
+  /* Muncul sekali saat halaman dibuka */
+  --animate-rise: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-white font-sans text-body antialiased;
+  }
+}
