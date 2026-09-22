@@ -6,7 +6,7 @@ import Project from "./section/Project"
 import PriceList from "./section/PriceList"
 import CtaSection from "./section/Ctasection"
 import Footer from "./section/Footer"
-import Preloader from "./components/PreLoader"
+import Preloader from "./components/Preloader"
 
 function App() {
   return (
