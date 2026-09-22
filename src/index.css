@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+  --font-display: "Poppins", sans-serif;
 
   /* Teks */
   --color-ink: #0f1d33; /* heading navy */
@@ -76,4 +76,43 @@
   body {
     @apply bg-white font-sans text-body antialiased;
   }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(40px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-40px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.4s ease-out;
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 1.2s ease-in-out infinite;
 }

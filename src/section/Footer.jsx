@@ -1,26 +1,27 @@
+import { Whatsapp } from "@boxicons/react";
 import {
   Clock,
   CodeXml,
   Globe,
   Mail,
-  MessageSquareText,
   Network,
   SquareTerminal,
 } from "lucide-react";
 
+
+
 const navLinks = [
   { label: "Beranda", href: "#beranda" },
-  { label: "Layanan & Kapabilitas", href: "#layanan" },
-  { label: "Studi Kasus & Portfolio", href: "#studi-kasus" },
-  { label: "Proses Kerja Agile", href: "#alur-kerja" },
-  { label: "Paket & Estimasi Harga", href: "#harga" },
-  { label: "Pertanyaan Umum (FAQ)", href: "#faq" },
+  { label: "Layanan", href: "#layanan" },
+  { label: "Portofolio", href: "#project" },
+  { label: "Harga", href: "#harga" },
 ];
+
 
 const contacts = [
   {
     id: "whatsapp",
-    icon: MessageSquareText,
+    icon: Whatsapp,
     label: "WhatsApp Enterprise",
     value: "+62 812-3456-7890",
     href: "https://wa.me/6281234567890",
@@ -63,10 +64,10 @@ function Footer() {
               href="#beranda"
               className="inline-flex items-center gap-2.5 rounded-sm outline-offset-4 focus-visible:outline-2 focus-visible:outline-brand"
             >
-              <span className="flex size-8 items-center justify-center rounded-lg bg-ink text-white">
+              <span className="flex size-8 items-center justify-center rounded-lg bg-peach text-peach-ink">
                 <CodeXml className="size-4.5" aria-hidden="true" />
               </span>
-              <span className="font-display text-lg font-bold text-ink">NexusCode</span>
+              <span className=" italic text-2xl font-extrabold text-ink">CaTech</span>
             </a>
 
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-body">
@@ -80,7 +81,7 @@ function Footer() {
                   <a
                     href={href}
                     aria-label={label}
-                    className="flex size-9 items-center justify-center rounded-lg bg-sky-chip text-brand transition hover:bg-sky-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                    className="flex size-9 items-center justify-center rounded-lg bg-peach text-peach-ink transition hover:bg-orange-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                   >
                     <SocialIcon className="size-4" aria-hidden="true" />
                   </a>
@@ -102,7 +103,7 @@ function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-body transition-colors hover:text-brand focus-visible:text-brand"
+                    className="text-sm text-body transition-colors hover:text-orange-500 focus-visible:text-orange-500"
                   >
                     {link.label}
                   </a>
@@ -123,7 +124,7 @@ function Footer() {
                 return (
                   <li key={contact.id} className="flex gap-2.5">
                     <ContactIcon
-                      className="mt-0.5 size-4 shrink-0 text-brand"
+                      className="mt-0.5 size-4 shrink-0 text-orange-500"
                       aria-hidden="true"
                     />
                     <div className="text-sm leading-snug">
@@ -131,7 +132,7 @@ function Footer() {
                       {contact.href ? (
                         <a
                           href={contact.href}
-                          className="text-body transition-colors hover:text-brand"
+                          className="text-body transition-colors hover:text-orange-500"
                         >
                           {contact.value}
                         </a>

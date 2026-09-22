@@ -1,113 +1,158 @@
-import { ArrowRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  HeartPulse,
+  Truck,
+  ShoppingCart,
+} from "lucide-react";
 import SectionHeading from "../ui/SectionHeading";
 
-// Taruh gambar di public/images/projects/ (rasio ±16:10, format .webp disarankan)
 const projects = [
   {
     id: "medicare",
+    icon: HeartPulse,
     category: "Healthcare ERP",
     title: "MediCare Health ERP",
+    client: "Klinik Sehat Sentosa",
     description:
       "Portal manajemen rekam medis terpadu & reservasi poli klinik dengan dashboard dokter realtime, integrasi resep farmasi digital, dan sinkronisasi BPJS.",
-    image: "/images/projects/medicare-health-erp.webp",
+    image: "/images/projects/healthcare.png",
     alt: "Dokter memantau dashboard analitik MediCare Health ERP di monitor",
-    tags: ["Laravel", "React", "PostgreSQL"],
     href: "#",
   },
   {
     id: "logitrack",
+    icon: Truck,
     category: "Logistics & Fleet",
     title: "LogiTrack Supply Chain",
+    client: "PT Logistik Nusantara",
     description:
       "Platform pelacakan armada muatan dan pemantauan logistik real-time terintegrasi GPS & IoT tracker, estimasi bahan bakar, dan otomatisasi manifest surat jalan.",
-    image: "/images/projects/logitrack-supply-chain.webp",
+    image: "/images/projects/kontraktor.png",
     alt: "Peta pelacakan armada LogiTrack di layar laptop",
-    tags: ["React.js", "REST API", "Tailwind"],
     href: "#",
   },
   {
     id: "artisan-luxe",
+    icon: ShoppingCart,
     category: "E-Commerce Marketplace",
     title: "Artisan Luxe Marketplace",
+    client: "Artisan Luxe Group",
     description:
       "E-commerce multi-vendor kustom dengan payment gateway otomatis, split pembayaran instan untuk merchant, voucher flash-sale, dan notifikasi WhatsApp pembeli.",
-    image: "/images/projects/artisan-luxe-marketplace.webp",
+    image: "/images/projects/ecommerce.png",
     alt: "Katalog produk Artisan Luxe Marketplace di tablet",
-    tags: ["Laravel 11", "Livewire", "Midtrans"],
     href: "#",
   },
 ];
 
+const AUTOPLAY_INTERVAL = 5000;
+
 function Project() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState("next"); // "next" atau "prev"
+
+  const goToNext = useCallback(() => {
+    setDirection("next");
+    setActiveIndex((prev) => (prev + 1) % projects.length);
+  }, []);
+
+  const goToPrev = useCallback(() => {
+    setDirection("prev");
+    setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(goToNext, AUTOPLAY_INTERVAL);
+    return () => clearInterval(timer);
+  }, [activeIndex, goToNext]);
+
+  const active = projects[activeIndex];
+  const Icon = active.icon;
+  const animationClass =
+    direction === "next" ? "animate-slide-in-right" : "animate-slide-in-left";
+
   return (
     <section
-      id="studi-kasus"
+      id="project"
       aria-labelledby="studi-kasus-title"
       className="bg-white py-20 sm:py-24"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           id="studi-kasus-title"
-          eyebrow="Karya Nyata"
-          title="Studi Kasus & Proyek yang Telah Kami Luncurkan"
-          description="Bukti nyata dedikasi teknis kami dalam membantu berbagai lini bisnis beroperasi lebih cerdas."
+          eyebrow="Portofolio"
+          title="Pengalaman Nyata di Berbagai Industri"
+          description="Setiap solusi dirancang sesuai kebutuhan bisnis. Beberapa implementasi berikut mewakili ratusan pengalaman kami di berbagai sektor industri."
         />
 
-        <ul className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <li key={project.id} className="flex">
-              <article className="group flex w-full flex-col overflow-hidden rounded-2xl bg-surface transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/10">
-                <div className="relative aspect-16/10 overflow-hidden bg-linear-to-br from-peach to-sky-soft">
-                  <img
-                    src={project.image}
-                    alt={project.alt}
-                    loading="lazy"
-                    width={640}
-                    height={400}
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <span className="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink shadow-sm backdrop-blur">
-                    {project.category}
+        <div className="mt-14 overflow-hidden rounded-3xl border border-ink/10 bg-white">
+          <div className="grid gap-10 p-8 sm:p-10 lg:grid-cols-2 lg:items-center lg:gap-12 lg:p-12">
+            {/* Kolom kiri: konten teks yang di-animasikan + tombol yang diam */}
+            <div>
+              {/* Bagian ini yang bergeser tiap ganti project */}
+              <div
+                key={`text-${active.id}`}
+                className={`overflow-hidden ${animationClass}`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="flex size-10 items-center justify-center rounded-xl bg-peach">
+                    <Icon className="size-5 text-peach-ink" aria-hidden="true" />
+                  </span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-peach-ink">
+                    {active.category}
                   </span>
                 </div>
 
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-lg font-bold text-ink transition-colors group-hover:text-peach-ink">
-                    {project.title}
-                  </h3>
+                <h3 className="mt-5 font-display text-2xl font-bold text-ink sm:text-3xl">
+                  {active.title}
+                </h3>
+                <p className="mt-1 text-sm font-medium text-body/70">
+                  {active.client}
+                </p>
 
-                  <p className="mt-2 text-sm leading-relaxed text-body">
-                    {project.description}
-                  </p>
+                <p className="mt-4 text-sm leading-relaxed text-body sm:text-base">
+                  {active.description}
+                </p>
+              </div>
 
-                  <ul className="mt-4 flex flex-wrap gap-2" aria-label="Teknologi yang digunakan">
-                    {project.tags.map((tag) => (
-                      <li
-                        key={tag}
-                        className="rounded-md bg-peach px-2.5 py-1 text-xs font-semibold text-peach-ink"
-                      >
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
+              {/* Tombol TIDAK punya key/animation class, jadi posisinya diam */}
+              <div className="mt-8 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={goToPrev}
+                  className="flex size-11 items-center justify-center rounded-full border border-peach-ink/40 text-peach-ink transition-colors duration-300 hover:bg-peach-ink hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                  aria-label="Studi kasus sebelumnya"
+                >
+                  <ChevronLeft className="size-5" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={goToNext}
+                  className="flex size-11 items-center justify-center rounded-full border border-peach-ink/40 text-peach-ink transition-colors duration-300 hover:bg-peach-ink hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                  aria-label="Studi kasus berikutnya"
+                >
+                  <ChevronRight className="size-5" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
 
-                  <a
-                    href={project.href}
-                    className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-sm pt-5 text-sm font-semibold text-peach-ink outline-offset-4 focus-visible:outline-2 focus-visible:outline-accent"
-                  >
-                    Lihat Detail Kasus
-                    <ArrowRight
-                      className="size-4 transition-transform duration-300 group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </a>
-                </div>
-              </article>
-            </li>
-          ))}
-        </ul>
+            <div
+              key={`img-${active.id}`}
+              className={`relative aspect-4/3 overflow-hidden rounded-2xl ${animationClass}`}
+            >
+              <img
+                src={active.image}
+                alt={active.alt}
+                loading="lazy"
+                className="size-full object-contain p-6 sm:p-10"
+              />
+            </div>
+          </div>
+        </div>
 
-        <div className="mt-14 text-center">
+        <div className="mt-10 text-center">
           <a
             href="#"
             className="inline-flex items-center justify-center rounded-xl bg-peach px-8 py-3.5 text-sm font-semibold text-peach-ink transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"

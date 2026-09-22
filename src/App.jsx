@@ -6,18 +6,20 @@ import Project from "./section/Project"
 import PriceList from "./section/PriceList"
 import CtaSection from "./section/Ctasection"
 import Footer from "./section/Footer"
+import Preloader from "./components/PreLoader"
 
 function App() {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar/>
-      <main>
-        <HeroSection />
-        <Service/>
-        <Project/>
-        <AlurKerja/>
-        <PriceList/>
-      </main>
+      <Preloader/>
+        <Navbar/>
+        <main>
+          <HeroSection />
+          <Service/>
+          <Project/>
+          <AlurKerja/>
+          <PriceList/>
+        </main>
       <CtaSection/>
       <Footer/>
     </div>

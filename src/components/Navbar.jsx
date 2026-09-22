@@ -1,4 +1,4 @@
-import { Menu, X } from "lucide-react";
+import { CodeXml, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { navItems } from "../constants";
 
@@ -9,8 +9,11 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex justify-between items-center relative text-sm">
-        <div className="flex items-center flex-shrink-0">
-          <span className="text-xl tracking-tight font-semibold text-[#0B1C33]">Ctech</span>
+        <div className="flex items-center flex-shrink-0 gap-2.5">
+          <span className="flex size-8 items-center justify-center rounded-lg bg-peach text-peach-ink">
+              <CodeXml className="size-4.5" aria-hidden="true" />
+            </span>
+          <span className="text-2xl tracking-tight font-extrabold italic text-[#0B1C33]">CaTech</span>
         </div>
 
         <ul className="hidden lg:flex ml-14 space-x-12">

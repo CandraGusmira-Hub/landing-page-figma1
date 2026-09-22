@@ -49,7 +49,7 @@ const FADE_MASK = "mask-[linear-gradient(to_bottom,black_55%,transparent)]";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-white px-4 pb-16 pt-12 font-sans sm:px-6 sm:pt-16 lg:px-8 lg:pb-24 lg:pt-24">
+    <section id="beranda" className="relative overflow-hidden bg-white px-4 pb-16 pt-12 font-sans sm:px-6 sm:pt-16 lg:px-8 lg:pb-24 lg:pt-24">
       {/* Pola titik halus */}
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(15,23,42,0.07)_1px,transparent_0)] bg-size-[24px_24px] mask-[radial-gradient(ellipse_at_top,black_25%,transparent_70%)]"

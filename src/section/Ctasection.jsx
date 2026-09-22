@@ -1,4 +1,5 @@
-import { Check, MessageSquareText, Video } from "lucide-react";
+import { Check, Video } from "lucide-react";
+import { Whatsapp } from "@boxicons/react";
 
 const WHATSAPP_URL = "https://wa.me/6281234567890";
 const MEET_URL = "#";
@@ -52,7 +53,7 @@ function CtaSection() {
             rel="noopener noreferrer"
             className="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-cta px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cta/30 transition hover:-translate-y-0.5 hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cta sm:w-auto"
           >
-            <MessageSquareText className="size-4.5" aria-hidden="true" />
+            <Whatsapp className="size-4.5" aria-hidden="true" />
             Hubungi Kami via WhatsApp Sekarang
           </a>
 
